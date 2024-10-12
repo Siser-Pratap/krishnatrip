@@ -10,8 +10,8 @@ const Navbar = () => {
   const [cart, setcart] = useState(3);
 
   return (
-    <div className='p-0 m-0 box-border'>
-    <div className='flex flex-row justify-between min-w-10 mt-0 p-2 bg-inherit'>
+    
+    <div className='flex flex-row justify-between min-w-10 mt-0 p-4 ml-4 bg-inherit h-[20vh]'>
         <div className='flex min-w-10 min-h-1'>
             <img src='/favicon.ico' className='h-20 w-20' alt="Krishna Trip" />
         </div>
@@ -33,7 +33,7 @@ const Navbar = () => {
               </svg>
         </div>
     </div>
-    </div>
+    
   )
 }
 

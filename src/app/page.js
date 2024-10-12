@@ -3,9 +3,12 @@ import Header from "./components/Header";
 
 export default function Home() {
   return (
-    <div className="bg-[url('/images.jpg')] bg-cover h-[100vh]  w-[100vw]">
-    <Navbar />
-    <Header />
+    <div className="">
+      <img className="absolute z-[-1] opacity-70 h-[100vh] w-[100vw] min-w-[510px]" src="/images.jpg" />
+      <div className="relative z-[10] h-[100vh] w-[100vw] min-w-[510px]">
+          <Navbar />
+          <Header  />
+    </div>
     </div>
     
   );
