@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     
-    <div className='flex flex-row justify-between min-w-10 mt-0 p-4 ml-4 bg-inherit h-[20vh]'>
+    <div className='flex w-full flex-row justify-between min-w-10 mt-0 p-4 ml-4 bg-inherit h-[20vh]'>
         <div className='flex min-w-10 min-h-1'>
             <img src='/favicon.ico' className='h-20 w-20' alt="Krishna Trip" />
         </div>
