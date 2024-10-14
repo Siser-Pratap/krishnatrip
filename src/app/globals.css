@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 
+@font-face {
+  font-family: sideFont;
+  src: url('./fonts/QwitcherGrypen-Regular.ttf');
+}
+
+
 
 
 
