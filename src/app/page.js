@@ -15,14 +15,13 @@ export default function Home() {
     <div className="h-[20vh] w-full flex justify-center flex-col gap-[2rem] mt-32 items-center overflow-visible">
       <h1>THE ADVENTURE</h1>
       <p className="italic">Mastering the art of perfect adventure for 10+ years in the wild.</p>
-      {/* <hr className="w-[60px] m-[2rem] border-none h-[60px]"></hr> */}
-      <svg className="h-[20vh] w-full bg-red-800">
-            <path d="M 10 100 Q 250 100 490 100" stroke="white" fill="transparent"/>
-      </svg>
+      <div className="flex flex-col gap-[0px]">
+        <img className="w-[20%]" src="https://img.icons8.com/ios-filled/50/horizontal-line.png" alt="horizontal-line"/>
+        <img className="w-[90%]" src="https://img.icons8.com/ios-filled/50/horizontal-line.png" alt="horizontal-line"/>
+      </div>
     </div>
-    <div>
-      <div className="bg-red h-[100px] w-[500px]"></div>
-    </div>
+   
+   
     
     </>
     
