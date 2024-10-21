@@ -14,20 +14,13 @@ const Navbar = () => {
   const [cart, setcart] = useState(3);
   const [small, setsmall] = useState(true);
 
-  // useGSAP(()=>{
-  //   gsap.to(".values", {
-  //     rotate:360,
-  //     duration:2,
-  //     delay:1,
-  //   })
-  // },{scope:'main'})
+  
 
 
   useGSAP(()=>{
-    gsap.to(".krishna", {
-      rotate:360,
-      duration:2,
-      delay:0.1,
+    gsap.to(".values", {
+      flexDirection:"row",
+      
     })
   })
 
