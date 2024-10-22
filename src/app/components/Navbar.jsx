@@ -20,37 +20,36 @@ const Navbar = () => {
 gsap.registerPlugin(useGSAP);
 const container = useRef();
 const krishna = useRef();
+const fullPageNav = useRef();
 
 
-const navButtons = document.querySelector(".navButtons")
+var tl = gsap.timeline({paused: true});
 
-navButtons.addEventListener("click", () => {
-  useGSAP(()=>{
-    tl.to(".hello", {
-      justifyContent:'flex-start',
-      duration:0.1,
-    })
-    tl.to(".krishna", {
-      opacity:0,
-    })
-    
-    .to(".smNav", {
-      flexDirection:"column",
-    });
-  });
-})
+tl.to(".fullPageNav", {
+  duration: 0,
+  display:"block",
+  ease:"Expo.easeInOut",
+}, {scope: fullPageNav});
+
+tl.reverse();
+
+var menuToggle = document.getElementById("navItems");
+console.log(menuToggle);
+// menuToggle.addEventListener("click", function(){
+//   tl.reversed(!tl.reversed());
+// });
 
 
 
-// useGSAP(() => {
+ useGSAP(() => {
   
-//   gsap.to(".krishna", {x: 100});
+  gsap.to(".krishna", {x: 100});
 
-// }, { scope: container });
+ }, { scope: container });
 
 
 
-const tl = gsap.timeline();
+
 
 
 
@@ -146,13 +145,25 @@ const navMenu = () => {
               <path d="M14.25 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 16.5 7.5h-1.875a.375.375 0 0 1-.375-.375V5.25Z" />
                           </svg>
         </div>
-      <div className='p-2 sm:hidden ' onClick={()=>{setsmall(!small)}}>
-                  {small?(<img className='navButtons' width="28" height="28" src="https://img.icons8.com/material-sharp/24/restaurant-menu.png" alt="restaurant-menu"/>):(<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 64 64">
+      {/* <div className='p-2 sm:hidden ' onClick={()=>{setsmall(!small)}}>(<button className='border-none'>
+                  {small?(<img className='navButtons' width="28" height="28" src="https://img.icons8.com/material-sharp/24/restaurant-menu.png" alt="restaurant-menu"/>):(<svg className="navButtons" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 64 64">
           <path d="M 16 14 C 15.488 14 14.976938 14.194937 14.585938 14.585938 C 13.804937 15.366937 13.804937 16.633063 14.585938 17.414062 L 29.171875 32 L 14.585938 46.585938 C 13.804938 47.366938 13.804937 48.633063 14.585938 49.414062 C 14.976937 49.805062 15.488 50 16 50 C 16.512 50 17.023062 49.805062 17.414062 49.414062 L 32 34.828125 L 46.585938 49.414062 C 47.366938 50.195063 48.633063 50.195062 49.414062 49.414062 C 50.195063 48.633062 50.195062 47.366937 49.414062 46.585938 L 34.828125 32 L 49.414062 17.414062 C 50.195063 16.633063 50.195062 15.366938 49.414062 14.585938 C 48.633062 13.804938 47.366937 13.804938 46.585938 14.585938 L 32 29.171875 L 17.414062 14.585938 C 17.023062 14.194938 16.512 14 16 14 z"></path>
-                        </svg>)} 
-      </div>
+                        </svg>)}</button>)
+      </div> */}
+      <div className='p-2 sm:hidden' onClick={() => { setsmall(!small) }}>
+  <button id="navItems" className='border-none navItems'>
+    {small ? (
+      <img className='navButtons' width="28" height="28" src="https://img.icons8.com/material-sharp/24/restaurant-menu.png" alt="restaurant-menu" />
+    ) : (
+      <svg className="navButtons" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 64 64">
+        <path d="M 16 14 C 15.488 14 14.976938 14.194937 14.585938 14.585938 C 13.804937 15.366937 13.804937 16.633063 14.585938 17.414062 L 29.171875 32 L 14.585938 46.585938 C 13.804938 47.366938 13.804937 48.633063 14.585938 49.414062 C 14.976937 49.805062 15.488 50 16 50 C 16.512 50 17.023062 49.805062 17.414062 49.414062 L 32 34.828125 L 46.585938 49.414062 C 47.366938 50.195063 48.633063 50.195062 49.414062 49.414062 C 50.195063 48.633062 50.195062 47.366937 49.414062 46.585938 L 34.828125 32 L 49.414062 17.414062 C 50.195063 16.633063 50.195062 15.366938 49.414062 14.585938 C 48.633062 13.804938 47.366937 13.804938 46.585938 14.585938 L 32 29.171875 L 17.414062 14.585938 C 17.023062 14.194938 16.512 14 16 14 z"></path>
+      </svg>
+    )}
+  </button>
+</div>
+      <div ref={fullPageNav} className='fullPageNav fixed left-0 top-0 w-full h-[100vh] hidden'>
       {!small&&(
-      <div className='smNav values flex flex-col gap-4 justify-start'>
+      <div className='values flex flex-col gap-4 justify-start'>
             {navLinks.map((link, index)=>(<Link className="mt-[0.3rem]" key={index} href={`/${link}`}>{link}</Link>))}
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" className="size-6">
               <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
@@ -171,6 +182,7 @@ const navMenu = () => {
         </div>
       )
       }
+      </div>
 
       
       
