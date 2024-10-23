@@ -55,7 +55,7 @@ const Navbar = () => {
 
         <div className='fixed w-full top-0 m-0 bg-inherit min-w-40'>
           <div ref={container} className='hello flex justify-between items-center p-2'>
-            <Link href="/" onClick={window.scrollTo(0,0)}>
+            <Link href="/" >
               <img ref={krishna} src="/favicon.jpg" className="krishna p-5 h-28 w-28 min-w-28" alt="KrishnaTrip"/>
             </Link>
             <div className='smNav hidden sm:flex flex-row gap-6 items-center'>
