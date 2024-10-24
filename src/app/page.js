@@ -19,17 +19,29 @@ export default function Home() {
   const navButtons = useRef();
   const menu = useRef();
   const navValues = useRef();
+  const back= useRef();
 
-  useGSAP(() => {
-        krishna.current.addEventListener('click', () => {
-          gsap.to(krishna.current, {
-            x: 100,
-            duration: 2,
-            delay: 1,
-            rotate: 720,
-          });
-      });
+  
+  
+
+  
+
+    const handleMenuClick = () => {
+      gsap.to(back.current, {
+        zIndex:2,
+        duration:0.3,
+        
+      })
+    }
+
+    useGSAP(() => {
+      menu.current.addEventListener('click',handleMenuClick)
+      navButtons.current.addEventListener('click',handleMenuClick)
     });
+        
+  
+
+
   
 
 
@@ -45,9 +57,9 @@ export default function Home() {
 
   return (
     <div className="relative oveflow-hidden">
-        <div className="Home h-[100vh] w-full bg-red-600">
-          <div className="hello h-[100vh] w-full top-0 left-0 z-[1]">
-            <div className="navbar bg-yellow-200">
+        <div className="Home h-[100vh] w-full bg-red-600 relative">
+          <div className="front h-[100vh] absolute w-full top-0 left-0 z-[0]">
+            <div className="navbar  bg-yellow-200">
                     <div className='w-full h-[15vh] '>
                   <div className='navItems flex justify-between h-[15vh] w-full items-center'>
                     <div className="photo">
@@ -57,7 +69,7 @@ export default function Home() {
                     </div>
                     <div className='navItems hidden sm:flex items-center gap-6 m-6'>
                       <button className='mt-[0.3rem]'>Home</button>
-                      <button className='mt-[0.3rem]' ref={menu}>Menu</button>
+                      <button ref={menu} className='mt-[0.3rem]'>Menu</button>
                       <svg className="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" >
                             <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clipRule="evenodd" />
                           </svg>
@@ -76,7 +88,7 @@ export default function Home() {
                     <div className='p-2 sm:hidden' onClick={() => { setsmall(!small) }}>
                       <button ref={navButtons} className='border-none navItems'>
                             {small ? (
-                              <img ref={menu} className='navButtons' width="28" height="28" src="https://img.icons8.com/material-sharp/24/restaurant-menu.png" alt="restaurant-menu" />
+                              <img className='navButtons' width="28" height="28" src="https://img.icons8.com/material-sharp/24/restaurant-menu.png" alt="restaurant-menu" />
                             ) : (
                               <svg className="navButtons" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 64 64">
                                 <path d="M 16 14 C 15.488 14 14.976938 14.194937 14.585938 14.585938 C 13.804937 15.366937 13.804937 16.633063 14.585938 17.414062 L 29.171875 32 L 14.585938 46.585938 C 13.804938 47.366938 13.804937 48.633063 14.585938 49.414062 C 14.976937 49.805062 15.488 50 16 50 C 16.512 50 17.023062 49.805062 17.414062 49.414062 L 32 34.828125 L 46.585938 49.414062 C 47.366938 50.195063 48.633063 50.195062 49.414062 49.414062 C 50.195063 48.633062 50.195062 47.366937 49.414062 46.585938 L 34.828125 32 L 49.414062 17.414062 C 50.195063 16.633063 50.195062 15.366938 49.414062 14.585938 C 48.633062 13.804938 47.366937 13.804938 46.585938 14.585938 L 32 29.171875 L 17.414062 14.585938 C 17.023062 14.194938 16.512 14 16 14 z"></path>
@@ -91,7 +103,7 @@ export default function Home() {
               <h1 ref={heading} >Heading</h1>
             </div>
           </div>
-          <div className="bye h-[100vh] absolute w-full z-[-1]">
+          <div ref={back} className="back h-[100vh] absolute w-full z-[-1]">
             <div className="nav h-[100vh] w-full">
               <div className='h-[100vh] w-full bg-yellow-500' ref={container}>
                 <button className='flex justify-end w-full p-[1rem] hover:underline h-auto font-bold text-[2rem] '>Close</button>
