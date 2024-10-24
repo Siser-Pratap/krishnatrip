@@ -21,6 +21,7 @@ const Navbar = () => {
   const navButtons = useRef();
   const navValues = useRef();
 
+  const t1 = gsap.timeline({paused:true});
   
 
   useGSAP(() => {
@@ -49,21 +50,15 @@ const Navbar = () => {
  })
 
   return (
-
-
-        
-
-        <div className='fixed w-full top-0 m-0 bg-inherit min-w-40'>
+      <>
+        <div className='fixed w-full top-0 m-0 bg-inherit min-w-40 z-[-2]'>
           <div ref={container} className='hello flex justify-between items-center p-2'>
             <Link href="/" onClick={window.scrollTo(0,0)}>
               <img ref={krishna} src="/favicon.jpg" className="krishna p-5 h-28 w-28 min-w-28" alt="KrishnaTrip"/>
             </Link>
             <div className='smNav hidden sm:flex flex-row gap-6 items-center'>
-                    {
-                      navLinks.map((link, index)=>(
-                        <Link className="mt-[0.3rem]" key={index} href={`/${link}`}>{link}</Link>)
-                        )
-                    }
+                  <button className='mt-[0.3rem]'>Home</button>
+                  <button className='mt-[0.3rem]'>Menu</button>
                   <svg className="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" >
                     <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clipRule="evenodd" />
                   </svg>
@@ -90,7 +85,7 @@ const Navbar = () => {
                     )}
               </button>
             </div>
-            {!small&&(
+            {/* {!small&&(
               <div ref={fullPageNav} className='fullPageNav fixed left-0 bg-red-600 top-0 w-[80%] h-[100vh] sm:hidden '>
                 <div className='values flex flex-col gap-4 justify-start'>
                   {
@@ -114,9 +109,20 @@ const Navbar = () => {
                   </svg>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
+        <div className='h-[100vh] w-full bg-red-500 z-[2]'>
+          <button className='flex justify-end w-full p-[1rem] hover:underline h-auto font-bold text-[2rem] '>Close</button>
+          <div className='flex pt-[28vh] pl-[30vw]  gap-[20px]  h-full w-full flex-col'>
+          {
+                    navLinks.map((link, index)=>(
+                      <Link ref={navValues} className="m-[0.3rem] hover:underline font-bold w-auto text-[2rem] navValues" key={index} href={`/${link}`}>{link}</Link>)
+                      )
+          }
+          </div>
+        </div>
+      </>
 
 
     
