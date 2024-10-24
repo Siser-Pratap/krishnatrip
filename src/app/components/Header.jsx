@@ -7,7 +7,9 @@ const Header = () => {
     //   <h1 className='text-gray-300 text-2xl'>Experience Mother Earth</h1>
     //   <p>PreBook Tours</p>
     // </div>
-    <Check />
+    
+    <Check classname="h-100vh" />
+    
 
   )
 }
