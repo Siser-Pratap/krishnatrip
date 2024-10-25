@@ -40,12 +40,27 @@ export default function Home() {
     useGSAP(() => {
       // menu.current.addEventListener('click',handleMenuClick);
       // navButtons.current.addEventListener('click',handleMenuClick);
+      gsap.set(".navValues",{y:"-100vh"});
+      gsap.set(back.current, {x:"-100vw"});
       tl.current = gsap
             .timeline({paused:true})
             .to(back.current, {
               zIndex:2,
-              duration:0,
-            });
+              x:0,
+
+              duration:1.5,
+
+              ease:"power2.inOut",
+            })
+            .to(".navValues",{
+              y:0,
+              duration:1.3,
+              stagger:0.5,
+              ease:"power4.inOut",
+              delay:-0.25,
+            })
+
+            
     });
 
 
@@ -79,9 +94,9 @@ export default function Home() {
 
   return (
     <div ref={home} className="relative oveflow-hidden">
-        <div className="Home h-[100vh] w-full bg-red-600 relative">
+        <div className="Home h-[100vh] w-full bg-white relative">
           <div className="front h-[100vh] absolute w-full top-0 left-0 z-[0]">
-            <div className="navbar  bg-yellow-200">
+            <div className="navbar  bg-white">
                     <div className='w-full h-[15vh] '>
                   <div className='navItems flex justify-between h-[15vh] w-full items-center'>
                     <div className="photo">
@@ -127,12 +142,12 @@ export default function Home() {
           </div>
           <div ref={back} className="back h-[100vh] absolute w-full z-[-1]">
             <div className="nav h-[100vh] w-full">
-              <div className='h-[100vh] w-full bg-yellow-500' ref={container}>
+              <div className='h-[100vh] w-full bg-red-500' ref={container}>
                 <button onClick={()=>setsmall(!small)} className='flex  justify-end w-full p-[1rem] h-auto font-bold text-[2rem] '><p className="hover:underline">Close</p></button>
                 <div className='flex pt-[28vh] pl-[30vw]  gap-[20px]  h-full w-full flex-col'>
                     {
                               navLinks.map((link, index)=>(
-                                <Link ref={navValues} className="m-[0.3rem] hover:underline font-bold w-auto text-[2rem] navValues" key={index} href={`/${link}`}>{link}</Link>)
+                                <Link ref={navValues} className="m-[0.3rem] navValues hover:underline font-bold w-auto text-[2rem] " key={index} href={`/${link}`}>{link}</Link>)
                                 )
                     }
                 </div>
