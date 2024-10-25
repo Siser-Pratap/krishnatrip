@@ -20,26 +20,46 @@ export default function Home() {
   const menu = useRef();
   const navValues = useRef();
   const back= useRef();
+  const home = useRef();
 
-  var tl =gsap.timeline();
+  const tl =useRef();
 
 
+  
   
 
   
 
-    const handleMenuClick = () => {
-      gsap.to(back.current, {
-        zIndex:2,
-        duration:1,
-        
-      })
-    }
+    // const handleMenuClick = () => {
+    //   gsap.to(back.current, {
+    //     zIndex:2,
+    //     duration:1,
+    //   })
+    // }
 
     useGSAP(() => {
-      menu.current.addEventListener('click',handleMenuClick)
-      navButtons.current.addEventListener('click',handleMenuClick)
+      // menu.current.addEventListener('click',handleMenuClick);
+      // navButtons.current.addEventListener('click',handleMenuClick);
+      tl.current = gsap
+            .timeline({paused:true})
+            .to(back.current, {
+              zIndex:2,
+              duration:0,
+            });
     });
+
+
+    useEffect(()=>{
+      if(small){
+        tl.current.reverse();
+      }
+      else{
+        tl.current.play();
+      }
+    },[small])
+  
+  
+  
         
   
 
@@ -58,7 +78,7 @@ export default function Home() {
 
 
   return (
-    <div className="relative oveflow-hidden">
+    <div ref={home} className="relative oveflow-hidden">
         <div className="Home h-[100vh] w-full bg-red-600 relative">
           <div className="front h-[100vh] absolute w-full top-0 left-0 z-[0]">
             <div className="navbar  bg-yellow-200">
@@ -71,7 +91,7 @@ export default function Home() {
                     </div>
                     <div className='navItems hidden sm:flex items-center gap-6 m-6'>
                       <button className='mt-[0.3rem]'>Home</button>
-                      <button ref={menu} className='mt-[0.3rem]'>Menu</button>
+                      <button onClick={()=>{setsmall(!small)}} ref={menu} className='mt-[0.3rem]'>Menu</button>
                       <svg className="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" >
                             <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clipRule="evenodd" />
                           </svg>
@@ -108,7 +128,7 @@ export default function Home() {
           <div ref={back} className="back h-[100vh] absolute w-full z-[-1]">
             <div className="nav h-[100vh] w-full">
               <div className='h-[100vh] w-full bg-yellow-500' ref={container}>
-                <button className='flex justify-end w-full p-[1rem] hover:underline h-auto font-bold text-[2rem] '>Close</button>
+                <button onClick={()=>setsmall(!small)} className='flex  justify-end w-full p-[1rem] h-auto font-bold text-[2rem] '><p className="hover:underline">Close</p></button>
                 <div className='flex pt-[28vh] pl-[30vw]  gap-[20px]  h-full w-full flex-col'>
                     {
                               navLinks.map((link, index)=>(
