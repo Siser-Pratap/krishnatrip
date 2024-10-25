@@ -21,7 +21,9 @@ export default function Home() {
   const navValues = useRef();
   const back= useRef();
 
-  
+  var tl =gsap.timeline();
+
+
   
 
   
@@ -29,7 +31,7 @@ export default function Home() {
     const handleMenuClick = () => {
       gsap.to(back.current, {
         zIndex:2,
-        duration:0.3,
+        duration:1,
         
       })
     }
